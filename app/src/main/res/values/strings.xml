@@ -106,4 +106,10 @@
         <item>@drawable/user9</item>
         <item>@drawable/user10</item>
     </string-array>
+
+    <string name="search">Search</string>
+    <string name="search_hint">Masukkan kata</string>
+    <string name="not_found">Not Found!</string>
+    <string name="search_user">Search User</string>
+    <string name="search_image">search image</string>
 </resources>
