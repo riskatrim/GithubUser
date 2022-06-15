@@ -1,54 +1,64 @@
 package com.example.githubuser
 
+
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import com.example.githubuser.adapter.SectionsPagerAdapter
+import com.example.githubuser.databinding.ActivityDetailUserBinding
+import com.example.githubuser.model.User
+import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailUser : AppCompatActivity() {
 
     companion object {
         const val EXTRA_USER = "extra_user"
+        @StringRes
+        private val TAB_TITLES = intArrayOf(
+            R.string.followers,
+            R.string.following
+        )
     }
+
+    private lateinit var binding: ActivityDetailUserBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityDetailUserBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setContentView(R.layout.activity_detail_user)
 
-        val backBtn: ImageButton = findViewById(R.id.imageButton)
-        backBtn.setOnClickListener(View.OnClickListener {
+        binding.imageButton.setOnClickListener {
             val intent = Intent(this@DetailUser, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
-        })
+        }
 
         val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
 
-        var imgPhoto: ImageView = findViewById(R.id.img_item_photo)
-        var tvName: TextView = findViewById(R.id.tv_item_name)
-        var tvUsername: TextView = findViewById(R.id.tv_item_username)
-        var tvCompany: TextView = findViewById(R.id.tv_item_company)
-        var tvLocation: TextView = findViewById(R.id.tv_item_location)
-        var tvFollowers: TextView = findViewById(R.id.tv_item_followers)
-        var tvFollowing: TextView = findViewById(R.id.tv_item_following)
-        var tvRepository: TextView = findViewById(R.id.tv_item_repository)
+        user.followers
+        user.following
 
-        var followers = user.followers
-        var following = user.following
+        val sectionsPagerAdapter = SectionsPagerAdapter(this)
+        binding.viewPager.adapter = sectionsPagerAdapter
+        TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
+            tab.text = resources.getString(TAB_TITLES[position])
+        }.attach()
+        supportActionBar?.elevation = 0f
 
-//        tvName.text = user.name
-//        tvUsername.text = user.username
-//        tvCompany.text = user.company
-//        tvLocation.text = user.location
-//        tvFollowers.text =
-//            (if (followers >= 1000) ((followers / 1000).toString() + "k") else (followers.toString())) + " Followers"
-//        tvFollowing.text =
-//            (if (following >= 1000) ((following / 1000).toString() + "k") else (following.toString())) + " Following"
-//        tvRepository.text = user.repository.toString() + " Repositories"
-//        imgPhoto.setImageResource(user.photo)
+        binding.tvItemName.text = user.name
+        binding.tvItemUsername.text = user.username
+        binding.tvItemCompany.text = user.company
+        binding.tvItemLocation.text = user.location
+        binding.tvItemFollowers.text = user.followers.toString()
+        binding.tvItemFollowing.text = user.following.toString()
+        binding.tvItemRepository.text = user.repository.toString()
+//        binding.imgItemPhoto.setImageResource(user.photo)
+
     }
+
+
+
 }
 

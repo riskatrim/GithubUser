@@ -10,7 +10,10 @@
         <entry key="app/src/main/res/layout/activity_list_users.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.24365942028985507" />
+        <entry key="app/src/main/res/layout/fragment_followers.xml" value="0.18342391304347827" />
+        <entry key="app/src/main/res/layout/fragment_following.xml" value="0.18342391304347827" />
         <entry key="app/src/main/res/layout/fragment_menu.xml" value="0.24365942028985507" />
+        <entry key="app/src/main/res/layout/fragment_repo.xml" value="0.18342391304347827" />
         <entry key="app/src/main/res/layout/item_row_user.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/item_user.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/menu/option_menu.xml" value="0.35833333333333334" />

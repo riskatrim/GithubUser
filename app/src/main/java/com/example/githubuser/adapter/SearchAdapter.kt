@@ -1,10 +1,12 @@
-package com.example.githubuser
+package com.example.githubuser.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.githubuser.R
+import com.example.githubuser.model.User
 
 class SearchAdapter(private val listReview: ArrayList<User>) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int) =

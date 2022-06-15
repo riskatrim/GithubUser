@@ -11,16 +11,17 @@ import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.StringRes
 import androidx.appcompat.widget.SearchView
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.githubuser.R.id.rv_users
+import androidx.viewpager2.widget.ViewPager2
+import com.example.githubuser.adapter.ListUserAdapter
+import com.example.githubuser.adapter.SectionsPagerAdapter
 import com.example.githubuser.databinding.ActivityMainBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.githubuser.model.User
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 
@@ -126,7 +127,7 @@ class MainActivity : AppCompatActivity() {
         showStart(false)
         showLoading(true)
         val success = mainViewModel.search(searchQuery)
-        Log.d("Riska", "failure: ${success}")
+        Log.d("Riska", "failure: $success")
         if (!success) {
             showNotFound(true)
             Log.d("Riska", "Not Found!")
@@ -183,7 +184,6 @@ class MainActivity : AppCompatActivity() {
         binding.notFound.visibility = if (isNotFound) View.VISIBLE else View.GONE
     }
     private fun showStart(isStart: Boolean) {
-        binding.imageStart.visibility = if (isStart) View.VISIBLE else View.GONE
         binding.textStart.visibility = if (isStart) View.VISIBLE else View.GONE
     }
 }
